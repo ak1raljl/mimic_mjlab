@@ -163,6 +163,17 @@ class MotionPlaybackEnv:
 
         self.reward_manager = DummyRewardManager()
 
+        class DummyCommandManager:
+            active_terms: list = []
+
+            def create_gui(self, server, env_idx_getter=None):
+                pass
+
+            def create_debug_vis_gui(self, server):
+                pass
+
+        self.command_manager = DummyCommandManager()
+
     def step(self, action=None):
         """Execute one simulation step with motion data."""
         if self.paused and not self.single_step_mode:
