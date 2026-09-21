@@ -1,3 +1,9 @@
+"""Base tracking environment factory for the FlashSAC task family.
+
+Self-contained copy of ``src.tasks.tracking.tracking_env_cfg`` so that this package does
+not depend on the PPO tracking package (the two families can be deleted independently).
+"""
+
 from mjlab.envs import ManagerBasedRlEnvCfg
 from mjlab.envs.mdp import dr
 from mjlab.envs.mdp.actions import JointPositionActionCfg
@@ -16,7 +22,7 @@ from mjlab.terrains import TerrainEntityCfg
 from mjlab.utils.noise import UniformNoiseCfg as Unoise
 from mjlab.viewer import ViewerConfig
 
-import src.tasks.tracking.mdp as mdp
+import src.tasks.tracking_sac.mdp as mdp
 
 VELOCITY_RANGE = {
   "x": (-1.0, 1.0),

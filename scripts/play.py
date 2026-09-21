@@ -118,7 +118,11 @@ def run_play(task_id: str, cfg: PlayConfig):
       disable_logger=True,
     )
 
-  env = RslRlVecEnvWrapper(env, clip_actions=agent_cfg.clip_actions)
+  runner_cls = load_runner_cls(task_id) or MjlabOnPolicyRunner
+  # Tasks may request a custom env wrapper (e.g. FlashSAC's affine action scaling)
+  # via an `env_wrapper_cls` attribute on the runner class; default unchanged.
+  wrapper_cls = getattr(runner_cls, "env_wrapper_cls", RslRlVecEnvWrapper)
+  env = wrapper_cls(env, clip_actions=agent_cfg.clip_actions)
   if DUMMY_MODE:
     action_shape: tuple[int, ...] = env.unwrapped.action_space.shape
     if cfg.agent == "zero":
@@ -138,7 +142,6 @@ def run_play(task_id: str, cfg: PlayConfig):
 
       policy = PolicyRandom()
   else:
-    runner_cls = load_runner_cls(task_id) or MjlabOnPolicyRunner
     runner = runner_cls(env, asdict(agent_cfg), device=device)
     runner.load(
       str(resume_path), load_cfg={"actor": True}, strict=True, map_location=device
