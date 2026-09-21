@@ -68,8 +68,11 @@ python scripts/play_motion.py --robot g1 --motion-file src/assets/motions/g1/dan
 ## Train
 
 ```bash
-# train
+# train with PPO (on-policy)
 python scripts/train.py Unitree-G1-Tracking-No-State-Estimation --motion_file=src/assets/motions/g1/<motion>.npz --env.scene.num-envs=4096
+
+# train with FlashSAC (off-policy)
+python scripts/train.py Unitree-G1-Tracking-No-State-Estimation-SAC --motion_file=src/assets/motions/g1/<motion>.npz --env.scene.num-envs=4096
 
 # resume training
 python scripts/train.py Unitree-G1-Tracking-No-State-Estimation --motion_file=src/assets/motions/g1/<motion>.npz --env.scene.num-envs=4096 --agent.resume True --agent.load-run 2026-xx-xx_xx-xx-xx --agent.load-checkpoint <model>.pt --agent.max-iterations 30000 --agent.run-name resume
@@ -79,6 +82,9 @@ python scripts/train.py Unitree-G1-Tracking-No-State-Estimation --motion_file=sr
 ## Play
 
 ```bash
-# play
+# play with PPO (on-policy)
 python scripts/play.py Unitree-G1-Tracking-No-State-Estimation  --motion_file=src/assets/motions/g1/<motion>.npz --checkpoint_file=logs/rsl_rl/g1_tracking/2026-xx-xx_xx-xx-xx/model_xx.pt
+
+# play with FlashSAC (off-policy)
+python scripts/play.py Unitree-G1-Tracking-No-State-Estimation-SAC --motion_file=src/assets/motions/g1/<motion>.npz --checkpoint_file=logs/rsl_rl/g1_tracking_sac/2026-xx-xx_xx-xx-xx/model_xx.pt
 ```
