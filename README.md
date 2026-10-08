@@ -6,6 +6,10 @@ train g1 mimic in mjlab
 
 *Mean episode length of PPO (g1_tracking) vs FlashSAC (g1_tracking_sac) on the same G1 motion tracking task.*
 
+![PPO vs SAC tracking errors](tracking_errors.png)
+
+*Tracking errors over the full reference clip (PPO in blue, SAC in orange): world torso position error, aligned mean body position error, aligned mean body orientation error, and L2 joint position error.*
+
 ## Installation
 
 - ### Dependencies
