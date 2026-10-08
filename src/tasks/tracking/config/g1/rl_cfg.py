@@ -42,5 +42,5 @@ def unitree_g1_tracking_ppo_runner_cfg() -> RslRlOnPolicyRunnerCfg:
         logger="tensorboard",
         save_interval=2000,
         num_steps_per_env=24,
-        max_iterations=30001,
+        max_iterations=20001,
     )

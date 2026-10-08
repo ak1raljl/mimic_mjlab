@@ -2,6 +2,10 @@
 
 train g1 mimic in mjlab
 
+![PPO vs FlashSAC training curves](ppo_sac.png)
+
+*Mean episode length of PPO (g1_tracking) vs FlashSAC (g1_tracking_sac) on the same G1 motion tracking task.*
+
 ## Installation
 
 - ### Dependencies

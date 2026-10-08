@@ -163,5 +163,5 @@ def unitree_g1_tracking_sac_runner_cfg() -> RslRlOffPolicyRunnerCfg:
         experiment_name="g1_tracking_sac",
         logger="tensorboard",
         save_interval=5000,
-        max_iterations=100_000,
+        max_iterations=50_000,
     )
